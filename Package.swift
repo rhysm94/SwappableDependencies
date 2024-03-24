@@ -4,5 +4,14 @@
 import PackageDescription
 
 let package = Package(
-    name: "SwappableDependencies"
+  name: "SwappableDependencies",
+  products: [
+    .library(
+      name: "SwappableDependencies",
+      targets: ["SwappableDependencies"]
+    )
+  ],
+  targets: [
+    .target(name: "SwappableDependencies")
+  ]
 )

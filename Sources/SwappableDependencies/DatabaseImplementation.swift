@@ -1,8 +1,8 @@
 import GRDB
 
 struct DatabaseImplementation {
-  var persist: @Sendable (Person) async throws -> Void
-  var retrieve: @Sendable () async throws -> [Person]
+	var persist: @Sendable (Person) async throws -> Void
+	var retrieve: @Sendable () async throws -> [Person]
 }
 
 extension DatabaseMigrator {
@@ -18,17 +18,17 @@ extension DatabaseMigrator {
 }
 
 extension DatabaseImplementation {
-  enum Failure: Error {
-    case notMigrated
-  }
-
-  static var failing: Self {
-    Self(
-      persist: { _ in throw Failure.notMigrated },
-      retrieve: { throw Failure.notMigrated }
-    )
-  }
-
+	enum Failure: Error {
+		case notMigrated
+	}
+	
+	static var failing: Self {
+		Self(
+			persist: { _ in throw Failure.notMigrated },
+			retrieve: { throw Failure.notMigrated }
+		)
+	}
+	
 	static func live(_ writer: any DatabaseWriter) -> Self {
 		Self(
 			persist: { model in

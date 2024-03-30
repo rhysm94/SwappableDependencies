@@ -37,7 +37,7 @@ extension DatabaseImplementation {
 				}
 			},
 			retrieve: {
-				try await writer.write { db in
+				try await writer.read { db in
 					try Person.fetchAll(db)
 				}
 			}
